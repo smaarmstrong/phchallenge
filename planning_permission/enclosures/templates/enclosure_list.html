@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enclosure List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Enclosure List</h1>
+        <ul class="list-group">
+            {% for enclosure in enclosures %}
+                <li class="list-group-item">
+                    Location: {{ enclosure.location }}<br>
+                    Height: {{ enclosure.height }}<br>
+                    Constraint: {{ enclosure.constraint }}<br>
+                    Permission Status: {{ enclosure.permission_status }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

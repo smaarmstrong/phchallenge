@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Check Enclosure</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <style>
+      .permission-required {
+        background-color: #ffcccc;
+      }
+      .no-permission-required {
+        background-color: #ccffcc;
+      }
+      .spacer {
+        margin-top: 30px;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Disable the empty option after a selection is made
+        const selects = document.querySelectorAll("select");
+        selects.forEach((select) => {
+          select.addEventListener("change", function () {
+            this.options[0].disabled = true;
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Check Enclosure</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          {{ form.location.label_tag }} {{ form.location }}
+        </div>
+        <div class="form-group">
+          {{ form.height.label_tag }} {{ form.height }}
+        </div>
+        <div class="form-group">
+          {{ form.constraint.label_tag }} {{ form.constraint }}
+        </div>
+        <button type="submit" class="btn btn-primary">Check</button>
+      </form>
+
+      <div class="spacer"></div>
+
+      <h2>Enclosures</h2>
+      <form method="post" action="{% url 'clear_enclosures' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Clear Table</button>
+      </form>
+      <br />
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Location</th>
+            <th>Height</th>
+            <th>Constraint</th>
+            <th>Permission Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for enclosure in enclosures %}
+          <tr
+            class="{% if enclosure.permission_status == 'Permission needed' %}permission-required{% else %}no-permission-required{% endif %}"
+          >
+            <td>{{ enclosure.id }}</td>
+            <td>{{ enclosure.location }}</td>
+            <td>{{ enclosure.height }}</td>
+            <td>{{ enclosure.constraint }}</td>
+            <td>{{ enclosure.permission_status }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
