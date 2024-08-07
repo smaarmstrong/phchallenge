@@ -3,20 +3,21 @@
 1. **Clone the repository:**
 
     ```bash
-    git clone <repository-url>
-    cd planning_permission
+    git clone https://github.com/smaarmstrong/phchallenge.git
+    cd phchallenge/
     ```
 
 2. **Create a virtual environment:**
 
     ```bash
-    python -m venv venv
+    python -m venv venv # Might be python3 on Mac
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
 3. **Install dependencies:**
 
     ```bash
+    cd 
     pip install -r requirements.txt
     ```
 
@@ -43,3 +44,7 @@
 7. **Access the application:**
 
     Open your web browser and navigate to `http://localhost:8000/enclosures/check/`.
+
+8. **Test the application:**
+
+   At `~/phchallenge/planning_permission`, run `python manage.py test enclosures`
