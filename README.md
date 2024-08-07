@@ -4,20 +4,20 @@
 
     ```bash
     git clone https://github.com/smaarmstrong/phchallenge.git
-    cd phchallenge/
     ```
 
 2. **Create a virtual environment:**
 
     ```bash
-    python -m venv venv # Might be python3 on Mac
+    cd phchallenge/
+    python -m venv venv
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
 3. **Install dependencies:**
 
     ```bash
-    cd 
+    cd phchallenge/ # yes, do it again!
     pip install -r requirements.txt
     ```
 
@@ -47,4 +47,6 @@
 
 8. **Test the application:**
 
-   At `~/phchallenge/planning_permission`, run `python manage.py test enclosures`
+   ```bash
+   python manage.py test enclosures
+   ```
